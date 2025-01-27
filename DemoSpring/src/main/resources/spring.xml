@@ -15,9 +15,11 @@
 <!--or we can use index attribute which starts from 0-->
 
 
-        <property name="laptop" ref="lap"/>
+<!--        <property name="laptop" ref="lap"/>-->
 <!--        this will smartly initialize the laptop variable with the reference of the lap variable which is being-->
 <!--        created in the container before hand.-->
+
+        <property name="comp" ref="lap"/>
     </bean>
 <!--    if we want to create multiple objects of the same class then we can do that assigning different id-->
     <bean id="dev1" class="org.rishav.Dev ">
