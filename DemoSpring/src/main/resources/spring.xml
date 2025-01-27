@@ -6,7 +6,15 @@
 <!--    the bean that are required to create the objects for, are specified in this beans section-->
 
     <bean id="dev" class="org.rishav.Dev ">
-        <property name="age" value="12"/>
+<!--        <property name="age" value="12"/>-->
+<!--        //property tag is used while using setter injection-->
+
+<!--            to use constructor injection we need to implement constructor-arg-->
+            <constructor-arg value="14"/>
+<!--        let's assume we have multiple arguments on the constructor then we need to specify name attribute-->
+<!--or we can use index attribute which starts from 0-->
+
+
     </bean>
 <!--    if we want to create multiple objects of the same class then we can do that assigning different id-->
     <bean id="dev1" class="org.rishav.Dev ">
