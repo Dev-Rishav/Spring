@@ -10,16 +10,19 @@
 <!--        //property tag is used while using setter injection-->
 
 <!--            to use constructor injection we need to implement constructor-arg-->
-            <constructor-arg value="14"/>
+<!--            <constructor-arg value="14"/>-->
 <!--        let's assume we have multiple arguments on the constructor then we need to specify name attribute-->
 <!--or we can use index attribute which starts from 0-->
 
 
+        <property name="laptop" ref="lap"/>
+<!--        this will smartly initialize the laptop variable with the reference of the lap variable which is being-->
+<!--        created in the container before hand.-->
     </bean>
 <!--    if we want to create multiple objects of the same class then we can do that assigning different id-->
     <bean id="dev1" class="org.rishav.Dev ">
     </bean>
 
-    <bean id="laptop" class="org.rishav.Laptop">
+    <bean id="lap" class="org.rishav.Laptop">
     </bean>
 </beans>

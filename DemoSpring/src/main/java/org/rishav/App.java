@@ -12,7 +12,7 @@ public class App
         Dev obj=(Dev)context.getBean("dev");
         //instaed of usnig Dev.class we can directly pass the class id which is defined on
         //the spring xml, but we need to explicitly type cast the object into the required class.
-//        obj.build();
-        System.out.println( obj.getAge() );
+        obj.build();
+//        System.out.println( obj.getAge() );
     }
 }

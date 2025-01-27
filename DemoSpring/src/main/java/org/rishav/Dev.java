@@ -1,7 +1,19 @@
 package org.rishav;
 
 public class Dev {
+    private Laptop laptop;
     private int age;
+
+    public Laptop getLaptop(){
+        System.out.println("printing laptop form getter method");
+        return laptop;
+    }
+    public void setLaptop(Laptop laptop){
+        this.laptop=laptop;
+    }
+//    while using getter, setter injection the naming should be same for the getter setter methods
+
+
     public Dev(){
         System.out.println("Dev object created!");
     }
