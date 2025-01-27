@@ -34,4 +34,14 @@ public class ProductController {
         //@requestBody annotation is used to bind the request body with a method parameter
         service.addProduct(prod);
     }
+
+    @PutMapping("/products")
+    public void updateProduct(@RequestBody Product product){
+        service.updateProduct(product);
+    }
+
+    @DeleteMapping("/products/{prodId}")
+    public void deleteProduct(@PathVariable int prodId){
+        service.deleteProduct(prodId);
+    }
 }
