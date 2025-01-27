@@ -1,0 +1,16 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    the bean that are required to create the objects for, are specified in this beans section-->
+
+    <bean id="dev" class="org.rishav.Dev ">
+    </bean>
+<!--    if we want to create multiple objects of the same class then we can do that assigning different id-->
+    <bean id="dev1" class="org.rishav.Dev ">
+    </bean>
+
+    <bean id="laptop" class="org.rishav.Laptop">
+    </bean>
+</beans>
