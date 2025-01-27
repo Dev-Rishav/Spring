@@ -5,7 +5,7 @@
 
 <!--    the bean that are required to create the objects for, are specified in this beans section-->
 
-    <bean id="dev" class="org.rishav.Dev ">
+    <bean id="dev" class="org.rishav.Dev" autowire="byType">
 <!--        <property name="age" value="12"/>-->
 <!--        //property tag is used while using setter injection-->
 
@@ -19,10 +19,18 @@
 <!--        this will smartly initialize the laptop variable with the reference of the lap variable which is being-->
 <!--        created in the container before hand.-->
 
-        <property name="comp" ref="lap"/>
+<!--        <property name="comp" ref="lap"/>-->
+<!--        now the name comp is pointing to the comp reference of the dev bean-->
+<!--        if we create a comp bean in the container then it will be assigned to the comp variable of the dev bean-->
+<!--        we need to specify the autowire property on the bean tag-->
+
+<!--        <property name="comp" ref="comp"/>-->
     </bean>
 <!--    if we want to create multiple objects of the same class then we can do that assigning different id-->
-    <bean id="dev1" class="org.rishav.Dev ">
+    <bean id="comp" class="org.rishav.Laptop ">
+    </bean>
+
+    <bean id="comp1" class="org.rishav.Desktop" primary="true">
     </bean>
 
     <bean id="lap" class="org.rishav.Laptop">
