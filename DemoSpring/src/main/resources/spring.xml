@@ -6,6 +6,7 @@
 <!--    the bean that are required to create the objects for, are specified in this beans section-->
 
     <bean id="dev" class="org.rishav.Dev ">
+        <property name="age" value="12"/>
     </bean>
 <!--    if we want to create multiple objects of the same class then we can do that assigning different id-->
     <bean id="dev1" class="org.rishav.Dev ">
