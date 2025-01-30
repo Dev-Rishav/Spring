@@ -10,8 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin//this will solve the cross origin errors (CORS)
 public class ProductController {
-
     @Autowired
     private ProductService service;
 
