@@ -6,6 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -24,6 +27,9 @@ public class Product {
     private String brand;
     private BigDecimal price;
     private String category;
+
+    //? Change the format of the date to be shown in, the month must be in MM capital
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date releaseDate;
     private boolean isAvailable;
     private int quantity;

@@ -21,4 +21,12 @@ public class ProductService {
     public void addProduct(Product product) {
         repo.save(product);
     }
+
+    public Product getProductById(int id){
+        return repo.findById(id).orElse(null);
+    }
+
+    //? we are using orElse() cause the the findById method returns a optional datatype when nothing is found in DB. so to avoid type mismatching we can use get() or orElse().Actually we should implement proper data to show in frontend.
+
+
 }
