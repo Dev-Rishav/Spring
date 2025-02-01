@@ -4,6 +4,7 @@ import com.rishav.ecom_project.model.Product;
 import com.rishav.ecom_project.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,8 +19,14 @@ public class ProductService {
         return repo.findAll();
     }
 
-    public void addProduct(Product product) {
-        repo.save(product);
+    public Product addProduct(Product product, MultipartFile image) throws Exception {
+        //now the thing is save function wont work as we have to save the image as well
+        //so we have to kindof spread the image into the product object
+        //so we have to convert the image into byte array
+        product.setImageName(image.getOriginalFilename());
+        product.setImageType(image.getContentType());
+        product.setImageBytes(image.getBytes());
+        return repo.save(product);
     }
 
     public Product getProductById(int id){

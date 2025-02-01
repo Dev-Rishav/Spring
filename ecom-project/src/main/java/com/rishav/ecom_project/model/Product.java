@@ -1,9 +1,6 @@
 package com.rishav.ecom_project.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -35,6 +32,48 @@ public class Product {
     private Date releaseDate;
     private boolean isAvailable;
     private int quantity;
+
+    private String imageName;
+    private String imageType;
+    //here for learning purposes we are using storing images into databases
+    //byte array is used to store the image with Large Object Binary annotation
+    @Lob
+    private byte[] imageBytes;
+    private Date imageDate;
+
+    public Date getImageDate() {
+        return imageDate;
+    }
+
+    public void setImageDate(Date imageDate) {
+        this.imageDate = imageDate;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public byte[] getImageBytes() {
+        return imageBytes;
+    }
+
+    public void setImageBytes(byte[] imageBytes) {
+        this.imageBytes = imageBytes;
+    }
+
+
 
     public Product(int id, String name, String description, String brand, BigDecimal price, String category, Date releaseDate, boolean isAvailable, int quantity) {
         this.id = id;
