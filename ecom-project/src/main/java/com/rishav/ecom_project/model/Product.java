@@ -29,7 +29,9 @@ public class Product {
     private String category;
 
     //? Change the format of the date to be shown in, the month must be in MM capital
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    //for now we are handling using react
+
     private Date releaseDate;
     private boolean isAvailable;
     private int quantity;
