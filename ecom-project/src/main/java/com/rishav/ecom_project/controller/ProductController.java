@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -20,6 +21,8 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService service;
+    @Autowired
+    private Product product;
 
 
     //?its good practice to send status code with the responses so we need to send a responseEntity object which binds the result with a status code
@@ -30,7 +33,7 @@ public class ProductController {
         return new ResponseEntity<>(service.getAllProducts(),HttpStatus.OK);
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/product/{id}")
         public ResponseEntity<Product> getProduct(@PathVariable int id){
             Product p=service.getProductById(id);
             if(p==null)
@@ -38,7 +41,7 @@ public class ProductController {
             else
                 return new ResponseEntity<>( service.getProductById(id),HttpStatus.OK);
         }
-        @PostMapping("/products")
+        @PostMapping("/product")
         public ResponseEntity<?> addProduct(@RequestPart Product product, @RequestPart MultipartFile imageFile) {
             try {
                 //one of the hectious error is, we have to name the imageFile as imageFile in the form data.
@@ -55,5 +58,26 @@ public class ProductController {
         Product product=service.getProductById(id);
         byte[] imageFile=product.getImageData();
         return ResponseEntity.ok().contentType(MediaType.valueOf(product.getImageType())).body(imageFile);
+     }
+
+     @PutMapping("product/{id}")
+     public ResponseEntity<String> updateProduct(@PathVariable  int id,@RequestPart Product product,@RequestPart MultipartFile imageFile) throws IOException {
+        Product prod=service.updateProduct(id,product,imageFile);
+        if(prod == null)
+            return new ResponseEntity<>("Failed to update",HttpStatus.BAD_REQUEST);
+        else
+            return new ResponseEntity<>("Updated",HttpStatus.OK);
+     }
+
+     @DeleteMapping("/product/{id}")
+    public  ResponseEntity<String> deleteProduct(@PathVariable int id){
+        Product prod=service.getProductById(id);
+        if(prod==null)
+            return  new ResponseEntity<>("No such product exists!",HttpStatus.NOT_FOUND);
+        else{
+            service.deleteProduct(id);
+            return new ResponseEntity<>("Product deleted successfully!",HttpStatus.OK);
+        }
+
      }
 }
