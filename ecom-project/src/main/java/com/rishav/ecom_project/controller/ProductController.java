@@ -80,4 +80,11 @@ public class ProductController {
         }
 
      }
+
+     @GetMapping("products/search")
+     //here we cant use {} as we are not passing dynamic paths like id, we are passing parameters from the url so we need to use annotation @RequestParam to do so, the variable name should be same
+    public ResponseEntity<List<Product>> searchProduct(@RequestParam String keyword){
+            List<Product> products=service.searchProducts(keyword);
+            return  new ResponseEntity<>(products,HttpStatus.OK);
+     }
 }

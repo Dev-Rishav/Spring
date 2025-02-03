@@ -48,6 +48,10 @@ public class ProductService {
         repo.deleteById(id);
     }
 
+    public List<Product> searchProducts(String keyword) {
+        return repo.searchProducts(keyword);
+    }
+
     //? we are using orElse() cause the the findById method returns a optional datatype when nothing is found in DB. so to avoid type mismatching we can use get() or orElse().Actually we should implement proper data to show in frontend.
 
 
