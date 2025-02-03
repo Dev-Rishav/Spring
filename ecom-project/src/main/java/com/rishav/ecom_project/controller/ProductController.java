@@ -25,7 +25,7 @@ public class ProductController {
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts() {
-        System.out.println("yes its working from the controller");
+//        System.out.println("yes its working from the controller");
         return new ResponseEntity<>(service.getAllProducts(),HttpStatus.OK);
     }
 
@@ -38,9 +38,11 @@ public class ProductController {
                 return new ResponseEntity<>( service.getProductById(id),HttpStatus.OK);
         }
         @PostMapping("/products")
-        public ResponseEntity<?> addProduct(@RequestPart Product product, @RequestPart MultipartFile image) {
+        public ResponseEntity<?> addProduct(@RequestPart Product product, @RequestPart MultipartFile imageFile) {
             try {
-                Product prod = service.addProduct(product, image);
+                //one of the hectious error is, we have to name the imageFile as imageFile in the form data.
+                System.out.println("yes"+ product+"  "+imageFile);
+                Product prod = service.addProduct(product, imageFile);
                 System.out.println(prod);
                 return new ResponseEntity<>(prod, HttpStatus.CREATED);
             } catch (Exception e) {

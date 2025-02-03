@@ -3,10 +3,6 @@ package com.rishav.ecom_project.model;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -38,7 +34,7 @@ public class Product {
     //here for learning purposes we are using storing images into databases
     //byte array is used to store the image with Large Object Binary annotation
     @Lob
-    private byte[] imageBytes;
+    private byte[] imageData;
     private Date imageDate;
 
     public Date getImageDate() {
@@ -65,12 +61,12 @@ public class Product {
         this.imageType = imageType;
     }
 
-    public byte[] getImageBytes() {
-        return imageBytes;
+    public byte[] getImageData() {
+        return imageData;
     }
 
-    public void setImageBytes(byte[] imageBytes) {
-        this.imageBytes = imageBytes;
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
     }
 
 
