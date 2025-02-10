@@ -1,5 +1,6 @@
-package com.rishav.SpringSecurity;
+package com.rishav.SpringSecurity.controller;
 
+import com.rishav.SpringSecurity.model.Student;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
