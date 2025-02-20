@@ -22,7 +22,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
+    @ResponseBody
     public String login(@RequestBody Users user){
-        return "Success";
+        return service.verify(user);
     }
 }

@@ -65,7 +65,10 @@ public class SecurityConfig {
         //using builder patter=zn to apply different operations on an object
         return http
                 .csrf(customizer -> customizer.disable())
-                .authorizeHttpRequests(request-> request.anyRequest().authenticated())
+                //the requestMatchers("").permitAll() method keep those routes free from authentication so users can login and register.
+                .authorizeHttpRequests(request-> request
+                        .requestMatchers("register","login").permitAll()
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
