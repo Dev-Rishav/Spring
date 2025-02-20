@@ -4,9 +4,11 @@ package com.rishav.SpringSecurity.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
@@ -102,6 +104,16 @@ public class SecurityConfig {
         provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
         provider.setUserDetailsService(userDetailsService);
         return provider;
+    }
+    //to use custom authentication techniques like JWT we need to handle our own authenticationManager
+    //authentication manager automatically calls the authenticationProvider object
+    //whenever we use custom function, we use bean annotation
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        //authenticationManager is an interface so we need to use the AuthenticationConfiguration object
+        //getAuthenticationManger() returns the object
+        return config.getAuthenticationManager();
     }
 
 }
