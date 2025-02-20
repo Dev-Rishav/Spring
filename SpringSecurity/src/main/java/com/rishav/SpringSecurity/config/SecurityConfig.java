@@ -1,6 +1,7 @@
 package com.rishav.SpringSecurity.config;
 
 
+import com.rishav.SpringSecurity.filter.JWTFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration //this specifies spring that this is a configuration file
 @EnableWebSecurity //this specifies that dont go with the default security configuration, follow this
@@ -32,6 +34,11 @@ public class SecurityConfig {
 //        return  http.build();
 //    }
     //upto this point we have specified the custom filter chain but have not added any filter, so at this point the login and logout filters wont be there on the API
+
+
+    @Autowired
+    private JWTFilter jwtFilter;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -71,6 +78,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                //before activating the UPAF(Username Password Authentication Filter) we have to activate the JWT Filter
+                //this technique enable us to use the JWT token for authentication
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
 
     }
